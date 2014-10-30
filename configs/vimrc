@@ -42,6 +42,11 @@ set backupdir=~/.vim/tmp/
 " Clipboard sharing
 set clipboard=unnamed
 
+" Switch between buffers
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
