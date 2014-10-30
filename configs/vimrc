@@ -49,6 +49,8 @@ map <C-K> :bprev<CR>
 " When backspace not work
 set backspace=indent,eol,start
 
+" Allow switch between buffers without saving
+set hidden
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
