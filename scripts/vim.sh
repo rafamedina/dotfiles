@@ -34,6 +34,8 @@ then
         rstacruz/sparkup
         scrooloose/nerdtree
         terryma/vim-multiple-cursors
+        evidens/vim-twig
+        scrooloose/syntastic
     )
 
     echo "Install plugins"
