@@ -52,6 +52,23 @@ set backspace=indent,eol,start
 " Allow switch between buffers without saving
 set hidden
 
+" Get a dialog when :q, :w, or :wq fails
+set confirm
+
+" Case insensitve searching
+set ignorecase
+set smartcase " But become case sensitive if you type uppercase characters
+
+" WildMenu
+set wildmenu
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
+
+" Show typed command in status bar
+set showcmd
+
+" show mode in status bar
+set showmode
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

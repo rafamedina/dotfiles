@@ -61,7 +61,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad;
 export DOCKER_HOST=tcp://127.0.0.1:2375
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export EDITOR=/usr/bin/vim
-
+export GOPATH=$HOME/gocode
 fpath=($HOME/.zsh/func $fpath)
 typeset -U fpath
 
