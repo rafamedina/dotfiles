@@ -49,7 +49,7 @@ map <C-K> :bprev<CR>
 " When backspace not work
 set backspace=indent,eol,start
 
-" Allow switch between buffers without saving
+" Allows switch between buffers without saving
 set hidden
 
 " Get a dialog when :q, :w, or :wq fails
