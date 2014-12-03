@@ -60,6 +60,9 @@ then
     # vimrc file
     ln -sfn ~/.dotfiles/configs/vimrc ~/.vimrc
 
+    # gvimrc file
+    ln -sfn ~/.dotfiles/configs/gvimrc ~/.gvimrc
+    
     echo -e "Done\n"
 else
     echo "vim not installed"
