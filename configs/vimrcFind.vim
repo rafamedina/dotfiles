@@ -1,6 +1,6 @@
 " Find file in current directory and edit it.
 function! Find(name)
-  let l:list=system("find . -name '".a:name."' | perl -ne 'print \"$.\\t$_\"'")
+  let l:list=system("find . -iname '*".a:name."*' | perl -ne 'print \"$.\\t$_\"'")
 " replace above line with below one for gvim on windows
 " let l:list=system("find . -name ".a:name." | perl -ne \"print qq{$.\\t$_}\"")
   let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
