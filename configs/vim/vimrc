@@ -73,7 +73,7 @@ set showmode
 " => Load customs files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-source ~/.dotfiles/configs/vimrcFind.vim
+source ~/.dotfiles/configs/vim/Find.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -90,7 +90,8 @@ set nowb
 syntax enable 
 
 try
-    colorscheme solarized
+    "colorscheme solarized
+    colors gruvbox
 catch
 endtry
 

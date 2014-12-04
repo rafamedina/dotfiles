@@ -36,6 +36,7 @@ then
         terryma/vim-multiple-cursors
         evidens/vim-twig
         scrooloose/syntastic
+        Yggdroot/indentLine
     )
 
     echo "Install plugins"
@@ -58,11 +59,13 @@ then
     done
 
     # vimrc file
-    ln -sfn ~/.dotfiles/configs/vimrc ~/.vimrc
+    ln -sfn ~/.dotfiles/configs/vim/vimrc ~/.vimrc
 
     # gvimrc file
-    ln -sfn ~/.dotfiles/configs/gvimrc ~/.gvimrc
-    
+    ln -sfn ~/.dotfiles/configs/vim/gvimrc ~/.gvimrc
+   
+    # colors
+    ln -sfn ~/.dotfiles/configs/vim/colors ~/.vim 
     echo -e "Done\n"
 else
     echo "vim not installed"
