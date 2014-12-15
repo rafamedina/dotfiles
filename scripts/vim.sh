@@ -57,7 +57,8 @@ then
             git pull origin master
         fi
     done
-
+    
+    echo "Creating links"
     # vimrc file
     ln -sfn ~/.dotfiles/configs/vim/vimrc ~/.vimrc
 
