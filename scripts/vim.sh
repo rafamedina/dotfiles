@@ -28,15 +28,21 @@ then
 
     # vim plugins (github)
     declare -a plugins=(
+        Raimondi/delimitMate
         airblade/vim-gitgutter
         altercation/vim-colors-solarized
-        bling/vim-airline
-        rstacruz/sparkup
+        editorconfig/editorconfig-vim
+        mattn/emmet-vim
+        mxw/vim-jsx
+        nathanaelkane/vim-indent-guides
+        pangloss/vim-javascript
+        pearofducks/ansible-vim
         scrooloose/nerdtree
         terryma/vim-multiple-cursors
-        evidens/vim-twig
-        scrooloose/syntastic
-        Yggdroot/indentLine
+        tpope/vim-fugitive
+        vim-airline/vim-airline
+        vim-airline/vim-airline-themes
+        vim-syntastic/syntastic
     )
 
     echo "Install plugins"
