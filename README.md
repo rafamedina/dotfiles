@@ -3,7 +3,7 @@ dotfiles
 
 install:
 
-    git clone git@github.com:gerardorochin/dotfiles.git ~/.dotfiles
+    git clone git@github.com:rafamedina/dotfiles.git ~/.dotfiles
     cd ~/.dotfiles
     ./bootstrap.sh
 
