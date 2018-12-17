@@ -89,7 +89,7 @@ full() {
 
 # check if java is installed and installs it
 check_java_and_install() {
-    if [[ $(java -version 2>&1) != *"OpenJDK"* ]]; 
+    if [[ $(java -version 2>&1) != *"OpenJDK"* ]]; then 
         install_java
     fi
 }
