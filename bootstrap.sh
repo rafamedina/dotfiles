@@ -16,6 +16,7 @@ declare -a sources=(
     git
     zsh
     vim
+    system
 )
 
 # run scripts enabled
