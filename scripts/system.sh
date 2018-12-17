@@ -1,6 +1,19 @@
 #!/bin/bash
+# Based in https://github.com/gmcabrita/dotfiles/blob/master/install.sh
 set -e
 set -o pipefail
+
+# chooses a user account to use for the installation
+get_user() {
+    if [ -z "${TARGET_USER-}" ]; then
+        PS3='Which user account should be used? '
+        mapfile -t options < <(find /home/* -maxdepth 0 -printf "%f\\n" -type d)
+        select opt in "${options:?[@]}"; do
+            readonly TARGET_USER=$opt
+            break
+        done
+    fi
+}
 
 # checks if we are running as root
 check_is_sudo() {
@@ -172,7 +185,7 @@ main() {
         check_asdf_and_install
         install_elixir
     elif [[ $cmd == "jenkins" ]]; then
-        check_isnt_sudo
+        check_is_sudo
         check_java_and_install
         install_jenkins
     else
