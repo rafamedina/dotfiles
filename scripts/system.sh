@@ -160,6 +160,8 @@ install_jenkins() {
     apt update
     apt install jenkins
 
+    systemctl start jenkins
+
     # Firewall
     ufw allow 8080
 
