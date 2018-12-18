@@ -100,6 +100,13 @@ full() {
     snap install spotify --classic
 }
 
+# installs some extra fonts
+install_fonts() {
+    cd "$(dirname "${BASH_SOURCE[0]}")"
+    cp -r ../fonts/* /usr/share/fonts
+    fc-cache -f -v
+}
+
 # check if java is installed and installs it
 check_java_and_install() {
     if [[ $(java -version 2>&1) != *"OpenJDK"* ]]; then 
@@ -150,6 +157,7 @@ install_jenkins() {
     curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
     echo "deb http://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
 
+    apt update
     apt install jenkins
 
     # Firewall
