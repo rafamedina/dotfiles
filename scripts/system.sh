@@ -84,6 +84,7 @@ base() {
     git \
     git-lfs \
     vim \
+    cmake \
     "linux-headers-$(uname -r)"
 }
 
@@ -166,6 +167,7 @@ install_jenkins() {
     ufw allow 8080
 
     # Copy this password
+    echo "Password"
     cat /var/lib/jenkins/secrets/initialAdminPassword
 }
 
