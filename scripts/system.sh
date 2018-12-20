@@ -85,7 +85,11 @@ base() {
     git-lfs \
     vim \
     cmake \
+    docker-ce \
     "linux-headers-$(uname -r)"
+
+    # setup docker for non-root
+    usermod -aG docker "$TARGET_USER"
 }
 
 full() {
