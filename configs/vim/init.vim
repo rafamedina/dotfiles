@@ -24,6 +24,8 @@ Plug 'liquidz/vim-iced', {'for': 'clojure'}
 Plug 'liquidz/vim-iced-asyncomplete', {'for': 'clojure'}
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "Plug 'guns/vim-sexp'
 "Plug 'tpope/vim-repeat'
