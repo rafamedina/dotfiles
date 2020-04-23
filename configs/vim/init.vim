@@ -14,6 +14,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rizzatti/dash.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
+Plug 'airblade/vim-gitgutter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load clojure plugins
@@ -26,17 +30,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
-"Plug 'tpope/vim-sexp-mappings-for-regular-people'
-"Plug 'guns/vim-sexp'
-"Plug 'tpope/vim-repeat'
-"Plug 'tpope/vim-surround'
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'ncm2/float-preview.nvim'
-"Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
-"Plug 'w0rp/ale'
-"Plug 'tpope/vim-sexp-mappings-for-regular-people'
-
-"Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
 " Initialize plugin system.
 call plug#end()
 
@@ -46,28 +39,13 @@ aug MyVimIcedSetting
   au!
   au VimEnter * call iced#nrepl#auto_connect()
 aug END
-"let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
-"set completeopt-=preview
-"let g:float_preview#docked = 0
-"let g:float_preview#max_width = 80
-"let g:float_preview#max_height = 40
-"let g:ale_linters = {
-"      \ 'clojure': ['clj-kondo', 'joker']
-"      \}
-"let g:conjure_log_direction = 'horizontal'
-"let g:conjure_map_prefix = ','
-"let g:conjure_log_blacklist = ["up", "lein/ret", "lein/ret-multiline", "lein/load-file", "lein/eval"]
-"filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 set autoread
-
-
+set encoding=utf8 
+scriptencoding utf-8
 "-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
@@ -96,6 +74,12 @@ let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\
 else
 let g:neomake_javascript_enabled_makers = ['standard']
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow parenthesis

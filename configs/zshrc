@@ -65,4 +65,24 @@ export GOPATH=$HOME/gocode
 fpath=($HOME/.zsh/func $fpath)
 typeset -U fpath
 
+
+# Enable Colors
+export CLICOLOR=1;
+export LSCOLORS=exfxcxdxbxegedabagacad;
+
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export EDITOR="/usr/local/bin/vim"
+export PAGER="/usr/local/bin/most"
+export GIT_PAGER="/usr/bin/less"
+
+# Locale
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
 source "`brew --prefix grc`/etc/grc.bashrc"

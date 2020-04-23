@@ -17,6 +17,7 @@ declare -a sources=(
     zsh
     vim
     system
+    nvim
 )
 
 # run scripts enabled

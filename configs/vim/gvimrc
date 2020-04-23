@@ -1,8 +1,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font
-set anti enc=utf-8
 set guifont=Sauce\ Code\ Powerline\ Semibold:h13
 
 # Transparency
-set transp=2
+"set transp=2
