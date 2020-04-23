@@ -13,40 +13,50 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rizzatti/dash.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'morhetz/gruvbox'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load clojure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'liuchengxu/vim-clap'
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'liquidz/vim-iced-asyncomplete', {'for': 'clojure'}
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'Shougo/deoplete.nvim'
-Plug 'ncm2/float-preview.nvim'
-Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
-Plug 'w0rp/ale'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'tpope/vim-sexp-mappings-for-regular-people'
+"Plug 'guns/vim-sexp'
+"Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-surround'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'ncm2/float-preview.nvim'
+"Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+"Plug 'w0rp/ale'
+"Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
-Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
+"Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
 " Initialize plugin system.
 call plug#end()
 
 " => Configure clojure plugins
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
-set completeopt-=preview
-let g:float_preview#docked = 0
-let g:float_preview#max_width = 80
-let g:float_preview#max_height = 40
-let g:ale_linters = {
-      \ 'clojure': ['clj-kondo', 'joker']
-      \}
-let g:conjure_log_direction = 'horizontal'
-let g:conjure_map_prefix = ','
-let g:conjure_log_blacklist = ["up", "lein/ret", "lein/ret-multiline", "lein/load-file", "lein/eval"]
-filetype plugin indent on
+let g:iced_enable_default_key_mappings = v:true
+aug MyVimIcedSetting
+  au!
+  au VimEnter * call iced#nrepl#auto_connect()
+aug END
+"let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
+"set completeopt-=preview
+"let g:float_preview#docked = 0
+"let g:float_preview#max_width = 80
+"let g:float_preview#max_height = 40
+"let g:ale_linters = {
+"      \ 'clojure': ['clj-kondo', 'joker']
+"      \}
+"let g:conjure_log_direction = 'horizontal'
+"let g:conjure_map_prefix = ','
+"let g:conjure_log_blacklist = ["up", "lein/ret", "lein/ret-multiline", "lein/load-file", "lein/eval"]
+"filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -55,11 +65,6 @@ filetype plugin indent on
 
 set autoread
 
-"--Rainbow parenthesis
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
 
 "-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
@@ -91,6 +96,14 @@ let g:neomake_javascript_enabled_makers = ['standard']
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Rainbow parenthesis
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd vimenter * NERDTree
@@ -119,7 +132,7 @@ set softtabstop=2
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable
+" syntax enable
 
 try
     "colorscheme solarized
