@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Personal plugins
 Plug 'scrooloose/nerdtree'
-Plug 'numkil/ag.nvim'
+" Plug 'numkil/ag.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'fortino645/vim-swap-lines'
 Plug 'vim-airline/vim-airline'
@@ -165,29 +165,3 @@ augroup end
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 
-"Denite
- nnoremap <C-p> :Denite file/rec<CR>
-" denite file_rec will use ag (ag will use .gitignore)
-call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-    " For ripgrep
-    " Note: It is slower than ag
-        " Define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  call deoplete#custom#buffer_option('auto_complete', v:false)
-endfunction

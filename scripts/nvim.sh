@@ -14,14 +14,13 @@ if test $(which nvim)
 then
     echo "Creating links"
     # vimrc file
-    ln -sfn ~/.dotfiles/configs/vim/vimrc ~/.config/nvim/init.vim
+    ln -sfn ~/.dotfiles/configs/vim/init.vim ~/.config/nvim/init.vim
 
-    # gvimrc file
-    ln -sfn ~/.dotfiles/configs/vim/gvimrc ~/.gvimrc
-   
-    # colors
-    ln -sfn ~/.dotfiles/configs/vim/colors ~/.vim 
-    echo -e "Done\n"
+    echo "Downloading Plug"
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    echo "Finished"
 else
     echo "NeoVim not installed"
 fi
