@@ -55,6 +55,8 @@ alias vim="nvim"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
+alias tempshot="sudo powermetrics --samplers smc -i1 -n1"
+alias temp="sudo powermetrics|grep -i \"temperature\""
 
 # Enable Colors
 export CLICOLOR=1;
@@ -92,3 +94,4 @@ export LC_ALL="en_US.UTF-8"
 source $HOME/.nurc
 autoload bashcompinit && bashcompinit
 source "$NU_HOME/nucli/nu.bashcompletion"
+eval "$(rbenv init -)"

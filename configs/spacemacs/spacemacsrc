@@ -45,6 +45,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     osx
      helm
      ;; auto-completion
      ;; better-defaults
@@ -335,6 +336,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-motion-state-map (kbd "C-J") #'evil-window-down)
   (define-key evil-motion-state-map (kbd "C-K") #'evil-window-up)
   (define-key evil-motion-state-map (kbd "C-L") #'evil-window-right)
+  (if (spacemacs/system-is-mac)
+      (setq mac-command-modifier 'super
+            mac-function-modifier 'hype
+            mac-right-option-modifier  'none))
 
   ;; Turn this off to stop it interfering with mic-paren.
   (set-face-attribute 'sp-show-pair-match-face nil :foreground 'unspecified :background 'unspecified)
@@ -350,7 +355,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company clojure-snippets auto-yasnippet ac-ispell auto-complete drag-stuff git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl clj-refactor inflections multiple-cursors paredit yasnippet cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company clojure-snippets auto-yasnippet ac-ispell auto-complete drag-stuff git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl clj-refactor inflections multiple-cursors paredit yasnippet cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
