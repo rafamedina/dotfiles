@@ -95,3 +95,6 @@ source $HOME/.nurc
 autoload bashcompinit && bashcompinit
 source "$NU_HOME/nucli/nu.bashcompletion"
 eval "$(rbenv init -)"
+
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=1"

@@ -1,4 +1,6 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
@@ -6,7 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Personal plugins
 Plug 'scrooloose/nerdtree'
-" Plug 'numkil/ag.nvim'
+Plug 'numkil/ag.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'fortino645/vim-swap-lines'
 Plug 'vim-airline/vim-airline'
@@ -22,24 +24,25 @@ Plug 'ryanoasis/vim-devicons'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load clojure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'liuchengxu/vim-clap'
-Plug 'guns/vim-sexp',    {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-Plug 'liquidz/vim-iced-asyncomplete', {'for': 'clojure'}
+
+Plug 'bakpakin/fennel.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'ncm2/float-preview.nvim'
+Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+Plug 'w0rp/ale'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'chrisbra/Colorizer'
+" Conjure
+Plug 'Olical/conjure', { 'tag': 'v3.0.0', 'do': 'bin/compile' }
 " Initialize plugin system.
+" "ANSI colorized 
+let g:colorizer_auto_filetype='clojure'
+let g:colorizer_disable_bufleave = 1
 call plug#end()
 
 " => Configure clojure plugins
-let g:iced_enable_default_key_mappings = v:true
-aug MyVimIcedSetting
-  au!
-  au VimEnter * call iced#nrepl#auto_connect()
-aug END
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -94,7 +97,7 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "
 "NERDTree map
@@ -112,6 +115,26 @@ nnoremap <C-l> <C-w>l
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Find setup 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set path+=**
+set wildignorecase
+" regex completion instead of whole word completion
+nnoremap <leader>f :find *
+" restrict the matching to files under the directory
+" of the current file, recursively
+nnoremap <leader>F :find <C-R>=expand('%:p:h').'/**/*'<CR>
+
+" same as the two above but opens the file in an horizontal window
+nnoremap <leader>s :sfind *
+nnoremap <leader>S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
+
+" same as the two above but with a vertical window
+nnoremap <leader>v :vert sfind *
+nnoremap <leader>V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,28 +163,50 @@ noremap <silent> <c-k> :call <SID>swap_up()<CR>
 noremap <silent> <c-j> :call <SID>swap_down()<CR>
 
 "Deoplete
+call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
+set completeopt-=preview
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
+call deoplete#custom#var('file', 'enable_buffer_path', 1)
 if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
+  call deoplete#custom#var('omni', 'input_patterns', {})
 endif
-" let g:deoplete#disable_auto_complete = 1
+
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-
-
-"omnifuncs
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css,less,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
 
 "Cursor
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Denite 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ nnoremap <C-p> :Denite file/rec<CR>
+
+" denite file_rec will use ag (ag will use .gitignore)
+call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+	" For ripgrep
+	" Note: It is slower than ag
+
+        " Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  call deoplete#custom#buffer_option('auto_complete', v:false)
+endfunction
 
