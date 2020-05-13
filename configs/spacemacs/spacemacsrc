@@ -308,6 +308,11 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ))
 
+(defun clj-format ()
+  (when (or (eq major-mode 'clojure-mode)
+            (eq major-mode 'clojurescript-mode))
+    (cljr-clean-ns t t)
+    (revert-buffer :ignore-auto :noconfirm)))
 
 (defun dotspacemacs/user-init ()
   (load-file "~/.spacemacs.d/dash.el")

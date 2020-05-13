@@ -58,6 +58,8 @@ alias reload="source ~/.zshrc"
 alias tempshot="sudo powermetrics --samplers smc -i1 -n1"
 alias temp="sudo powermetrics|grep -i \"temperature\""
 
+alias run-lint="~/.dotfiles/commands/lint.sh"
+
 # Enable Colors
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
