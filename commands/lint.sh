@@ -8,18 +8,31 @@ else
     against=$(git hash-object -t tree /dev/null)
 fi
 
+found=0
+
+echo
+echo "🔭 Finding weird 👾things"
+echo
+echo "🚀 Launching: <clj-kondo>"
 if !(git diff --name-only --diff-filter=AM $against | grep -E '.clj[cs]?$' | xargs clj-kondo --lint)
 then
-    echo
-    echo "Error: new <clj-kondo> errors found. Please fix them and retry again."
-    exit 1
-  elif !(lein kibit)
+    echo "🚨 Error: <clj-kondo> found errors. Please fix them and retry again."
+  ((found+=1))
+else
+  echo "✅ Clean: <clj-kondo>"
+fi
+echo
+echo "🚀 Launching: <lein kibit>"
+if !(lein kibit)
   then
-    echo
-    echo "Error: new <lein kibit> errors found. Please fix them and retry again."
-    exit 1
+    echo "🚨 Error: <lein kibit> found errors. Please fix them and retry again."
+  ((found+=1))
   else
-    echo "Clean, no errors"
+  echo "✅ Clean: <lein kibit>"
+fi
+
+if [[ $found -gt 0 ]]; then
+  echo "🔥 Errors!"
 fi
 
 exec git diff-index --check --cached $against --
