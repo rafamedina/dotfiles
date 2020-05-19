@@ -24,8 +24,7 @@ Plug 'ryanoasis/vim-devicons'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load clojure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Plug 'bakpakin/fennel.vim'
+Plug 'Olical/conjure', {'tag': 'v3.1.1'}
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'ncm2/float-preview.nvim'
@@ -35,12 +34,17 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'chrisbra/Colorizer'
 " Conjure
-Plug 'Olical/conjure', { 'tag': 'v3.0.0', 'do': 'bin/compile' }
 " Initialize plugin system.
 " "ANSI colorized 
 let g:colorizer_auto_filetype='clojure'
 let g:colorizer_disable_bufleave = 1
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Load Fennel Clojure
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'Olical/aniseed', { 'tag': 'v3.3.0' }
+Plug 'bakpakin/fennel.vim'
 
 " => Configure clojure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,7 +159,7 @@ set background=dark
 au BufRead,BufNewFile Vagrantfile set ft=ruby
 
 "Clipboard
-" set clipboard+=unnamed
+set clipboard+=unnamed
 vnoremap <C-c> "+y
 
 "Swipe lines
