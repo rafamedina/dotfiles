@@ -100,3 +100,30 @@ eval "$(rbenv init -)"
 
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
+
+#GPG Agent
+rgpg(){
+  gpgconf --kill gpg-agent
+    # Restart the gpg agent.
+    killall scdaemon > /dev/null
+    killall gpg-agent > /dev/null
+    killall ssh-agent > /dev/null
+    start_gpgagent
+}
+start_gpgagent() {
+  GPG_TTY=$(tty)
+  export GPG_TTY
+  gpgconf --launch gpg-agent
+  # Launch gpg-agent
+  gpg-connect-agent /bye
+  # When using SSH support, use the current TTY for passphrase prompts
+  gpg-connect-agent updatestartuptty /bye > /dev/null
+  # Point the SSH_AUTH_SOCK to the one handled by gpg-agent
+  if [ -S "$(gpgconf --list-dirs agent-ssh-socket)" ]; then
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    export SSH_AUTH_SOCK
+  else
+    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running ?"
+  fi
+}
+start_gpgagent

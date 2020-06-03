@@ -26,10 +26,11 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs-layers")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+   javascript
      (clojure :variables
               clojure-enable-linters 'clj-kondo
               clojure-enable-sayid t
@@ -52,8 +53,10 @@ values."
      git
      markdown
      themes-megapack
-     org
+     ;; org
      shell
+     yaml
+     ;; json
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -62,6 +65,8 @@ values."
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-global-margin t)
+
+     ;; custom-org
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -144,7 +149,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-dark-high-contrast)
+   dotspacemacs-themes '(zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -342,7 +347,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq diff-hl-side 'right)
   (add-to-load-path "~/dev/nu/nudev/ides/emacs")
   (require 'nu)
-  (load-theme 'solarized-dark-high-contrast)
+  ;; (load-theme 'solarized t)
+
 
   ;; keymaps
   (define-key evil-motion-state-map (kbd "C-H") #'evil-window-left)
@@ -363,62 +369,32 @@ before packages are loaded. If you are unsure, you should try in setting them in
     :config
     (require 'flycheck-clj-kondo))
 
-   (whitespace-mode 1)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
    (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
         (when (file-directory-p nudev-emacs-path)
         (add-to-list 'load-path nudev-emacs-path)
         (require 'nu)))
 
-  (use-package smartparens
-  :diminish smartparens-mode
-  :init
-  (smartparens-global-mode)
-  :config
-  (require 'smartparens-config)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'smartparens-mode)
-  (custom-set-variables
-   '(sp-base-key-bindings 'sp)
-   '(sp-override-key-bindings
-     '(("C-S-<left>" . sp-backward-slurp-sexp)
-       ("C-S-<right>" . sp-backward-barf-sexp)
-       ("C-M-t" . sp-transpose-sexp)
-       ("C-S-k" . sp-kill-hybrid-sexp)
-       ("C-c C-<right>" . sp-slurp-hybrid-sexp)
-       ("C-(" . sp-rewrap-sexp)
-       ("C-M-<backspace>" . sp-splice-sexp-killing-around)
-       ("C-S-<backspace>" . nil)))))
+  ;; projectile
+  (setq projectile-project-search-path '("~/dev/"))
 
+;;  (eval-after-load 'cider
+ ;;   #'emidje-setup)
+
+  (load-file "~/.spacemacs.d/smartparens.el")
 )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" default)))
- '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (markdown-mode magit-popup gitignore-mode fringe-helper git-gutter+ git-gutter flycheck magit git-commit with-editor transient autothemer pos-tip company inflections cider multiple-cursors paredit sesman queue parseedn clojure-mode parseclj a yasnippet auto-complete xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot evil-smartparens solarized-dark-high-contrast-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme define-word ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smeargle reveal-in-osx-finder restart-emacs rainbow-delimiters popwin persp-mode pcre2el pbcopy paradox osx-trash osx-dictionary orgit org-bullets open-junk-file neotree move-text mmm-mode midje-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint launchctl indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag gruvbox-theme google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flycheck-pos-tip flycheck-clj-kondo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu elisp-slime-nav dumb-jump drag-stuff diminish diff-hl company-statistics company-quickhelp column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(sp-base-key-bindings (quote sp))
- '(sp-override-key-bindings
-   (quote
-    (("C-S-<left>" . sp-backward-slurp-sexp)
-     ("C-S-<right>" . sp-backward-barf-sexp)
-     ("C-M-t" . sp-transpose-sexp)
-     ("C-S-k" . sp-kill-hybrid-sexp)
-     ("C-c C-<right>" . sp-slurp-hybrid-sexp)
-     ("C-(" . sp-rewrap-sexp)
-     ("C-M-<backspace>" . sp-splice-sexp-killing-around)
-     ("C-S-<backspace>")))))
+    (zen-and-art-theme yaml-mode xterm-color ws-butler winum white-sand-theme which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline powerline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle shell-pop seti-theme reverse-theme reveal-in-osx-finder restart-emacs rebecca-theme rainbow-delimiters railscasts-theme purple-haze-theme professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib zenburn-theme org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme midje-mode material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme launchctl json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy flycheck-pos-tip flycheck-clj-kondo flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu espresso-theme eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump drag-stuff dracula-theme django-theme diminish diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-statistics company-quickhelp column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-key badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alert alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F")))))
