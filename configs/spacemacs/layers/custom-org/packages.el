@@ -19,8 +19,8 @@
     (use-package auth-source-pass
       :config
       (auth-source-pass-enable))
-    (setq org-gcal-client-id "680116841907-vno060fov6heeohomcoe8lflm9hrv9pc.apps.googleusercontent.com"
-          org-gcal-client-secret "1Dd5iXI5qEPRo7uwSanYUjX9"
+    (setq org-gcal-client-id ""
+          org-gcal-client-secret ""
           org-gcal-file-alist
           '(("rafael.medina@nubank.com.br" .  "~/.orgcalendar/gcal-main.org")
             )))
