@@ -46,6 +46,11 @@ DISABLE_UPDATE_PROMPT=true
 plugins=(osx git git-extras themes vagrant brew node npm python sublime cp docker gitignore git-prompt)
 
 source $ZSH/oh-my-zsh.sh
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment purple default "%(!.%{%F{yellow}%}.)$USER"
+  fi
+}
 
 # Customize to your needs...
 # Aliases
@@ -76,7 +81,7 @@ typeset -U fpath
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:"$HOME/.jenv/bin:$PATH":"$HOME/dev/nu/flutter/bin":$PATH
 export EDITOR="/usr/local/bin/vim"
 export PAGER="/usr/local/bin/most"
 export GIT_PAGER="/usr/bin/less"
@@ -96,6 +101,7 @@ export LC_ALL="en_US.UTF-8"
 source $HOME/.nurc
 autoload bashcompinit && bashcompinit
 source "$NU_HOME/nucli/nu.bashcompletion"
+source $NUCLI_HOME/aws-scripts/refresh-environment
 eval "$(rbenv init -)"
 
 export GPG_TTY=$(tty)
@@ -127,7 +133,11 @@ start_gpgagent() {
   fi
 }
 start_gpgagent
- unset DOCKER_TLS_VERIFY
- unset DOCKER_CERT_PATH
- unset DOCKER_MACHINE_NAME
- unset DOCKER_HOST
+
+unset DOCKER_TLS_VERIFY
+unset DOCKER_CERT_PATH
+unset DOCKER_MACHINE_NAME
+unset DOCKER_HOST
+
+eval "$(jenv init -)"
+

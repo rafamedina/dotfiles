@@ -43,7 +43,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Fennel Clojure
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Olical/aniseed', { 'tag': 'v3.3.0' }
+Plug 'Olical/aniseed', { 'tag': 'v4.1.0' }
 Plug 'bakpakin/fennel.vim'
 
 " => Configure clojure plugins
