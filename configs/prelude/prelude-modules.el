@@ -1,14 +1,3 @@
-(condition-case nil
-    (require 'use-package)
-  (file-error
-   (require 'package)
-   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-   (package-initialize)
-   (package-refresh-contents)
-   (package-install 'use-package)
-   (require 'use-package)))
-(require 'use-package)
-
 (require 'prelude-helm) ;; Interface for narrowing and search
 (require 'prelude-helm-everywhere)
 
