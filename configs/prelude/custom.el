@@ -1,31 +1,46 @@
-
+;; =====================
+;; => Custom packages 
+;; =====================
 (prelude-require-packages '(underwater-theme 
                             winum
                             clj-refactor
                             flycheck-clj-kondo
                             iedit
                             expand-region))
-
+;; =====================
+;; => Stylist 
+;; =====================
 (setq default-frame-alist '((font . "Monaco-13")))
 (load-theme 'underwater t)
 
+;; =====================
+;; => Load external files
+;; =====================
 (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu)))
 (load "~/.emacs.d/personal/+binding.el")
 
+
+;; =====================
+;; => Settings 
+;; =====================
 (setq x-select-enable-clipboard t)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq helm-ag-insert-at-point 'symbol)
+
 (winum-mode)
 
+;; =====================
+;; => Hooks 
+;; =====================
 (defun my-clojure-mode-hook ()
    (require 'flycheck-clj-kondo)
     (clj-refactor-mode 1)
     (yas-minor-mode 1) ; for adding require/use/import statements
     (cljr-add-keybindings-with-prefix "C-c C-m"))
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
 (custom-set-variables

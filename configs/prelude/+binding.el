@@ -40,3 +40,10 @@
 
 (global-set-key (kbd "s-*") 'helm-projectile-ag)
 (global-set-key (kbd "C-;") 'iedit-mode)
+
+;; Make <escape> quit as much as possible - From SPACEMACS
+(define-key minibuffer-local-map (kbd "<escape>") 'keyboard-escape-quit)
+(define-key minibuffer-local-ns-map (kbd "<escape>") 'keyboard-escape-quit)
+(define-key minibuffer-local-completion-map (kbd "<escape>") 'keyboard-escape-quit)
+(define-key minibuffer-local-must-match-map (kbd "<escape>") 'keyboard-escape-quit)
+(define-key minibuffer-local-isearch-map (kbd "<escape>") 'keyboard-escape-quit)
