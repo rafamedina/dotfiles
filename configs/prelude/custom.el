@@ -2,7 +2,9 @@
 (prelude-require-packages '(underwater-theme 
                             winum
                             clj-refactor
-                            flycheck-clj-kondo))
+                            flycheck-clj-kondo
+                            iedit
+                            expand-region))
 
 (setq default-frame-alist '((font . "Monaco-13")))
 (load-theme 'underwater t)
@@ -11,45 +13,10 @@
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu)))
+(load "~/.emacs.d/personal/+binding.el")
 
-(setq ns-command-modifier 'super)
-(setq ns-right-command-modifier ns-command-modifier)
-
-(setq winum-keymap
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "C-`") 'winum-select-window-by-number)
-      (define-key map (kbd "C-²") 'winum-select-window-by-number)
-      (define-key map (kbd "s-0") 'winum-select-window-0-or-10)
-      (define-key map (kbd "s-1") 'winum-select-window-1)
-      (define-key map (kbd "s-2") 'winum-select-window-2)
-      (define-key map (kbd "s-3") 'winum-select-window-3)
-      (define-key map (kbd "s-4") 'winum-select-window-4)
-      (define-key map (kbd "s-5") 'winum-select-window-5)
-      (define-key map (kbd "s-6") 'winum-select-window-6)
-      (define-key map (kbd "s-7") 'winum-select-window-7)
-      (define-key map (kbd "s-8") 'winum-select-window-8)
-      map))
-
-(add-hook 'clojure-mode-hook
-    '(lambda ()
-       (local-set-key (kbd "C-c = b") 'cider-format-buffer)
-       (local-set-key (kbd "C-c = d") 'cider-format-defun)
-       (local-set-key (kbd "C-c = r") 'cider-format-region)))
-
-(progn
-  (define-prefix-command 'w-key-map)
-  (define-key w-key-map (kbd "-") 'split-window-below)
-  (define-key w-key-map (kbd "/") 'split-window-right))
-(global-set-key (kbd "<s-return> w") w-key-map)
-
-(progn
-  (define-prefix-command 'f-key-map)
-  (define-key f-key-map (kbd "b") 'helm-ag-buffers)
-  (define-key f-key-map (kbd "f") 'helm-file-do-grep))
-(global-set-key (kbd "<s-return> f") f-key-map)
-
-(global-set-key (kbd "s-*") 'helm-projectile-ag)
-
+(setq x-select-enable-clipboard t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq helm-ag-insert-at-point 'symbol)
 (winum-mode)
 
@@ -68,8 +35,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (clojure-mode markdown-mode exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window)))
- '(safe-local-variable-values (quote ((flycheck-disabled-checkers emacs-lisp-checkdoc)))))
+    (iedit zop-to-char zenburn-theme yaml-mode winum which-key volatile-highlights use-package underwater-theme super-save smartrep smartparens rainbow-mode rainbow-delimiters operate-on-number move-text magit lsp-ui key-chord json-mode js2-mode imenu-anywhere hl-todo helm-projectile helm-descbinds helm-ag guru-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck-clj-kondo expand-region exec-path-from-shell evil-visualstar evil-surround evil-numbers elisp-slime-nav editorconfig easy-kill discover-my-major diminish diff-hl crux company-lsp clj-refactor browse-kill-ring beacon anzu ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

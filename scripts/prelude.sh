@@ -18,6 +18,7 @@ then
     # vimrc file
     ln -sfn ~/.dotfiles/configs/prelude/custom.el ~/.emacs.d/personal/custom.el
     ln -sfn ~/.dotfiles/configs/prelude/prelude-modules.el ~/.emacs.d/personal/prelude-modules.el
+    ln -sfn ~/.dotfiles/configs/prelude/+binding.el ~/.emacs.d/personal/+binding.el
 
 else
     echo "spacemacs not installed"
