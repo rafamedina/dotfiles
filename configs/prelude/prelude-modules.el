@@ -1,10 +1,11 @@
 (require 'prelude-helm) ;; Interface for narrowing and search
 (require 'prelude-helm-everywhere)
+;(require 'prelude-ivy)
 
 (require 'prelude-company)
 (require 'prelude-key-chord) ;; Binds useful features to key combinations
-(require 'prelude-evil)
 (require 'prelude-clojure)
+(require 'prelude-evil)
 
 (require 'prelude-emacs-lisp)
 (require 'prelude-js)

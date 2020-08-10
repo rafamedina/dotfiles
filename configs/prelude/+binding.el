@@ -15,9 +15,14 @@
 
 (add-hook 'clojure-mode-hook
     '(lambda ()
+       (local-set-key (kbd "g s") 'cider-find-var)
        (local-set-key (kbd "C-c = b") 'cider-format-buffer)
        (local-set-key (kbd "C-c = d") 'cider-format-defun)
-       (local-set-key (kbd "C-c = r") 'cider-format-region)))
+       (local-set-key (kbd "C-c = r") 'cider-format-region)
+       (general-def 'normal 'override
+         "M-." 'cider-find-var)
+       ))
+(key-chord-define-global "gt" 'cider-find-var)
 
 (progn
   (define-prefix-command 'w-key-map)
