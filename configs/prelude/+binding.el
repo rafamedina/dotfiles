@@ -21,7 +21,11 @@
        (local-set-key (kbd "C-c = r") 'cider-format-region)
        (general-def 'normal 'override
          "M-." 'cider-find-var)
-       ))
+       (general-def 'normal 'override
+         "g-d" 'cider-find-var)
+       )
+       (general-def 'normal 'override
+         "g-o." 'cider-pop-back))
 (key-chord-define-global "gt" 'cider-find-var)
 
 (progn

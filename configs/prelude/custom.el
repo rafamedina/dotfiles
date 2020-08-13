@@ -14,7 +14,18 @@
                             highlight-parentheses
                             rainbow-mode
                             general
-                            lispyville))
+                            lispyville
+                            ))
+
+
+(prelude-require-packages '(lsp-mode lsp-dart lsp-ui))
+
+(with-eval-after-load 'lsp-dart
+  (add-hook 'dart-mode-hook #'lsp))
+
+(setq lsp-mode t)
+(setq lsp-dart t)
+
 ;; =====================
 ;; => Stylist
 ;; =====================
@@ -137,5 +148,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (iedit zop-to-char zenburn-theme yaml-mode winum which-key volatile-highlights use-package underwater-theme super-save smartrep smartparens rainbow-mode rainbow-delimiters operate-on-number move-text magit lsp-ui key-chord json-mode js2-mode imenu-anywhere hl-todo helm-projectile helm-descbinds helm-ag guru-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck-clj-kondo expand-region exec-path-from-shell evil-visualstar evil-surround evil-numbers elisp-slime-nav editorconfig easy-kill discover-my-major diminish diff-hl crux company-lsp clj-refactor browse-kill-ring beacon anzu ace-window))))
+   '(iedit zop-to-char zenburn-theme yaml-mode winum which-key volatile-highlights use-package underwater-theme super-save smartrep smartparens rainbow-mode rainbow-delimiters operate-on-number move-text magit lsp-ui key-chord json-mode js2-mode imenu-anywhere hl-todo helm-projectile helm-descbinds helm-ag guru-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck-clj-kondo expand-region exec-path-from-shell evil-visualstar evil-surround evil-numbers elisp-slime-nav editorconfig easy-kill discover-my-major diminish diff-hl crux company-lsp clj-refactor browse-kill-ring beacon anzu ace-window)))

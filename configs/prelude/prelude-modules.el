@@ -16,3 +16,4 @@
 (require 'prelude-shell)
 (require 'prelude-xml)
 (require 'prelude-yaml)
+(require 'prelude-dart)
