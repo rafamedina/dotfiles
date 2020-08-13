@@ -17,15 +17,6 @@
                             lispyville
                             ))
 
-
-(prelude-require-packages '(lsp-mode lsp-dart lsp-ui))
-
-(with-eval-after-load 'lsp-dart
-  (add-hook 'dart-mode-hook #'lsp))
-
-(setq lsp-mode t)
-(setq lsp-dart t)
-
 ;; =====================
 ;; => Stylist
 ;; =====================
@@ -36,6 +27,8 @@
    :weight 'normal
    :width 'normal)
 (load-theme 'underwater t)
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; nice scrolling
 (setq scroll-margin 0
