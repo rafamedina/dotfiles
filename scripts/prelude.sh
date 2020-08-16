@@ -21,5 +21,5 @@ then
     ln -sfn ~/.dotfiles/configs/prelude/+binding.el ~/.emacs.d/personal/+binding.el
 
 else
-    echo "spacemacs not installed"
+    echo "Emacs not installed"
 fi
