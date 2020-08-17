@@ -15,6 +15,7 @@
                             rainbow-mode
                             general
                             lispyville
+                            dracula-theme
                             ))
 
 ;; =====================
@@ -26,7 +27,7 @@
    :height 130
    :weight 'normal
    :width 'normal)
-(load-theme 'underwater t)
+(load-theme 'dracula t)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
