@@ -1,3 +1,4 @@
+(require 'prelude-erc)
 (require 'prelude-helm) ;; Interface for narrowing and search
 (require 'prelude-helm-everywhere)
 ;(require 'prelude-ivy)
@@ -16,3 +17,4 @@
 (require 'prelude-shell)
 (require 'prelude-xml)
 (require 'prelude-yaml)
+(require 'prelude-dart)
