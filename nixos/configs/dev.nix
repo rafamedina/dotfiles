@@ -9,11 +9,7 @@
   [
     clojure
     leiningen
+    emacs
   ];
-  
-  services.emacs = with pkgs; {
-    enable = true;
-    defaultEditor = true;
-  };
 }
 

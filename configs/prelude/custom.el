@@ -115,7 +115,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(line-number-current-line ((t :weight bold :foreground "goldenrod" :background "slate gray"))))
+ )
 
 ;; =====================
 ;; => Hooks
@@ -142,4 +142,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(iedit zop-to-char zenburn-theme yaml-mode winum which-key volatile-highlights use-package underwater-theme super-save smartrep smartparens rainbow-mode rainbow-delimiters operate-on-number move-text magit lsp-ui key-chord json-mode js2-mode imenu-anywhere hl-todo helm-projectile helm-descbinds helm-ag guru-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck-clj-kondo expand-region exec-path-from-shell evil-visualstar evil-surround evil-numbers elisp-slime-nav editorconfig easy-kill discover-my-major diminish diff-hl crux company-lsp clj-refactor browse-kill-ring beacon anzu ace-window)))
+   (quote
+    (yaml-mode geiser lsp-ui company-lsp json-mode js2-mode rainbow-mode elisp-slime-nav evil-numbers evil-visualstar evil-surround evil cider clojure-mode rainbow-delimiters key-chord company helm-ag helm-descbinds helm-projectile helm exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window))))
