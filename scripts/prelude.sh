@@ -12,6 +12,7 @@ if test $(which emacs)
 then
 
     # downloading 
+    echo "Downloading"
     wget --no-check-certificate https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
 
     echo "Creating links"
@@ -19,7 +20,7 @@ then
     ln -sfn ~/.dotfiles/configs/prelude/custom.el ~/.emacs.d/personal/custom.el
     ln -sfn ~/.dotfiles/configs/prelude/prelude-modules.el ~/.emacs.d/personal/prelude-modules.el
     ln -sfn ~/.dotfiles/configs/prelude/+binding.el ~/.emacs.d/personal/+binding.el
-
+    echo "Done"
 else
     echo "Emacs not installed"
 fi
