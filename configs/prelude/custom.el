@@ -59,6 +59,8 @@
       projectile-project-search-path '("~/dev/")
       lispyville-barf-stay-with-closing t
       highlight-parentheses t
+      helm-candidate-number-limit 50
+      projectile-git-submodule-command nil 
       auto-revert-interval 1)           ; Refresh buffers fast
 
 (setq hl-paren-background-colors '("blue"))
