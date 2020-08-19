@@ -10,6 +10,7 @@
       ./configs/hardware.nix
       ./configs/cli.nix
       ./configs/desk.nix
+      ./configs/dev.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -73,12 +74,15 @@
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = { 
+    enable = true;
+    support32Bit = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rafa = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio"]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release from which the default
