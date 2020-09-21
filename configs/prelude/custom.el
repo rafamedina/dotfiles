@@ -16,6 +16,7 @@
                             general
                             lispyville
                             dracula-theme
+                            company
                             ))
 
 ;; =====================
@@ -60,7 +61,7 @@
       lispyville-barf-stay-with-closing t
       highlight-parentheses t
       helm-candidate-number-limit 50
-      projectile-git-submodule-command nil 
+      projectile-git-submodule-command nil
       auto-revert-interval 1)           ; Refresh buffers fast
 
 (setq hl-paren-background-colors '("blue"))
@@ -74,11 +75,11 @@
 
  (lispyville-set-key-theme '(
                             additional
-                            additional-insert
-                            (additional-movement normal visual motion)
+                            (additional-insert normal insert)
+                            (additional-movement visual)
                             (additional-wrap insert normal)
                             arrows
-                            (commentary visual normal)
+                            (commentary visual)
                             text-objects
                             prettify
                             c-w
@@ -111,13 +112,6 @@
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
 
-;; example of customizing colors
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; =====================
 ;; => Hooks
@@ -131,6 +125,8 @@
     (rainbow-delimiters-mode t)
     (yas-minor-mode t) ; for adding require/use/import statements
     (cljr-add-keybindings-with-prefix "C-c C-m"))
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook #'rainbow-mode)
@@ -138,11 +134,19 @@
 (dolist (hook '(clojure-mode-hook cider-repl-mode-hook))
   (add-hook hook 'lispyville-mode))
 
+
+;; example of customizing colors
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (yaml-mode geiser lsp-ui company-lsp json-mode js2-mode rainbow-mode elisp-slime-nav evil-numbers evil-visualstar evil-surround evil cider clojure-mode rainbow-delimiters key-chord company helm-ag helm-descbinds helm-projectile helm exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window))))
+   '(keycast markdown-preview-mode yaml-mode geiser lsp-ui company-lsp json-mode js2-mode rainbow-mode elisp-slime-nav evil-numbers evil-visualstar evil-surround evil cider clojure-mode rainbow-delimiters key-chord company helm-ag helm-descbinds helm-projectile helm exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window)))

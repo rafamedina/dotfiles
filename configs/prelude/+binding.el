@@ -15,18 +15,21 @@
 
 (add-hook 'clojure-mode-hook
     '(lambda ()
-       (local-set-key (kbd "g s") 'cider-find-var)
        (local-set-key (kbd "C-c = b") 'cider-format-buffer)
        (local-set-key (kbd "C-c = d") 'cider-format-defun)
        (local-set-key (kbd "C-c = r") 'cider-format-region)
        (general-def 'normal 'override
          "M-." 'cider-find-var)
        (general-def 'normal 'override
-         "g-d" 'cider-find-var)
-       )
+         "g d" 'cider-find-var)
        (general-def 'normal 'override
-         "g-o." 'cider-pop-back))
-(key-chord-define-global "gt" 'cider-find-var)
+         "g o" 'cider-pop-back)
+       (key-chord-define-global "gt" 'cider-find-var)))
+(local-set-key (kbd "C-c C-b") 'cider-repl-clear-buffer)
+
+(add-hook 'cider-popup-buffer-mode-hook
+  '(lambda ()
+       (local-set-key (kbd "q") 'cider-quit)))
 
 (progn
   (define-prefix-command 'w-key-map)
@@ -37,7 +40,7 @@
 (progn
   (define-prefix-command 's-key-map)
   (define-key s-key-map (kbd "b") 'helm-ag-buffers)
-  (define-key s-key-map (kbd "f") 'helm-file-do-grep))
+  (define-key s-key-map (kbd "f") 'helm-file-do-git-grep))
 (global-set-key (kbd "<s-return> s") s-key-map)
 
 (progn

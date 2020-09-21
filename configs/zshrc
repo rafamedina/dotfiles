@@ -48,9 +48,24 @@ plugins=(osx git git-extras themes vagrant brew node npm python sublime cp docke
 source $ZSH/oh-my-zsh.sh
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment purple default "%(!.%{%F{yellow}%}.)$USER"
+    prompt_segment purple default "%(!.%{%F{yellow}%}.)"
   fi
 }
+
+function preexec() {
+  timer=$(($(print -P %D{%s%6.})/1000))
+}
+
+function _command_time_precmd() {
+  if [ $timer ]; then
+    now=$(($(print -P %D{%s%6.})/1000))
+    elapsed=$(($now-$timer))
+
+    print ">> took ${elapsed}ms"
+    unset timer
+  fi
+}
+precmd_functions+=(_command_time_precmd)
 
 # Customize to your needs...
 # Aliases
@@ -98,11 +113,17 @@ export LC_ALL="en_US.UTF-8"
 
 # source "`brew --prefix grc`/etc/grc.bashrc"
 
+# NU
 source $HOME/.nurc
 autoload bashcompinit && bashcompinit
 source "$NU_HOME/nucli/nu.bashcompletion"
 source $NUCLI_HOME/aws-scripts/refresh-environment
 eval "$(rbenv init -)"
+
+alias aws-br='aws --profile=br'
+alias aws-mx='aws --profile=mx'
+alias aws-data='aws --profile=data'
+alias aws-co='aws --profile=co'
 
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
