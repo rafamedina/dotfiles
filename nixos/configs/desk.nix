@@ -12,6 +12,8 @@
     skype
     xfce.xfce4-battery-plugin
     xfce.xfce4-appfinder
+    xfce.xfce4-xkb-plugin
+
     lightdm
     lightdm_gtk_greeter
     gnome3.nautilus
@@ -37,7 +39,7 @@
     fadeDelta = 4;
   };
 
-  services.xserver.layout = "us";
+  services.xserver.layout = "us,latam";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
