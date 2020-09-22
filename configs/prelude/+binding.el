@@ -19,6 +19,8 @@
        (local-set-key (kbd "C-c = d") 'cider-format-defun)
        (local-set-key (kbd "C-c = r") 'cider-format-region)
        (general-def 'normal 'override
+         "C-c C-o" 'cider-repl-clear-buffer)
+       (general-def 'normal 'override
          "M-." 'cider-find-var)
        (general-def 'normal 'override
          "g d" 'cider-find-var)
