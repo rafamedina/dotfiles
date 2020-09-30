@@ -15,6 +15,12 @@
 
 (add-hook 'clojure-mode-hook
     '(lambda ()
+       (defun format-clojure ()
+         "All clojure"
+         (cider-format-buffer)
+         (clojure-align))
+
+       (local-set-key (kbd "C-c = a") 'format-clojure)
        (local-set-key (kbd "C-c = b") 'cider-format-buffer)
        (local-set-key (kbd "C-c = d") 'cider-format-defun)
        (local-set-key (kbd "C-c = r") 'cider-format-region)
@@ -28,6 +34,11 @@
          "g o" 'cider-pop-back)
        (key-chord-define-global "gt" 'cider-find-var)))
 (local-set-key (kbd "C-c C-b") 'cider-repl-clear-buffer)
+
+(add-hook 'cider-test-report-mode-hook
+  '(lambda ()
+       (general-def 'normal 'override
+         "<escape>" 'cider-popup-buffer-quit-function)))
 
 (add-hook 'cider-popup-buffer-mode-hook
   '(lambda ()
@@ -61,3 +72,8 @@
 (define-key minibuffer-local-completion-map (kbd "<escape>") 'keyboard-escape-quit)
 (define-key minibuffer-local-must-match-map (kbd "<escape>") 'keyboard-escape-quit)
 (define-key minibuffer-local-isearch-map (kbd "<escape>") 'keyboard-escape-quit)
+
+;; MAGIT
+(define-key prelude-mode-map (kbd "s-m d b") 'magit-diff-buffer-file)
+(define-key prelude-mode-map (kbd "s-m d s") 'magit-diff-buffer-staged)
+(define-key prelude-mode-map (kbd "s-m d u") 'magit-diff-buffer-unstaged)
