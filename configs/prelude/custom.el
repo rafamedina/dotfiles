@@ -37,7 +37,6 @@
       scroll-preserve-screen-position 1)
 
 ;; mode line settings
-(line-number-mode t)
 (column-number-mode t)
 (size-indication-mode t)
 
@@ -95,11 +94,8 @@
 
 (winum-mode)
 
-;; line numbres
-(setq-default display-line-numbers 'visual
-              display-line-numbers-widen t
-              ;; this is the default
-              display-line-numbers-current-absolute t)
+;; Defauls
+(setq-default truncate-lines t)
 
 (defun noct:relative ()
   (setq-local display-line-numbers 'visual))
