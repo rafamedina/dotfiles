@@ -8,7 +8,6 @@
                             iedit
                             expand-region
                             minions
-                            lispy
                             moody
                             rainbow-delimiters
                             highlight-parentheses
@@ -87,7 +86,6 @@
                             (atom-motions t)
                             (escape insert emacs)
                              slurp/barf-cp))
-(lispy-set-key-theme '(lispy c-digits))
 
 (minions-mode 1)
 (moody-replace-mode-line-buffer-identification)
@@ -119,7 +117,6 @@
 (defun my-clojure-mode-hook ()
     (require 'flycheck-clj-kondo)
     (require 'highlight-parentheses)
-    (lispy-mode 1)
     (clj-refactor-mode t)
     (highlight-parentheses-mode t)
     (rainbow-delimiters-mode t)
@@ -130,6 +127,11 @@
 (add-hook 'cider-mode-hook #'company-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook #'rainbow-mode)
+
+(eval-after-load 'cider
+  '(progn
+    (cider-add-to-alist 'cider-jack-in-dependencies
+     "clj-commons/pomegranate" "1.2.0")))
 
 (dolist (hook '(clojure-mode-hook cider-repl-mode-hook))
   (add-hook hook 'lispyville-mode))

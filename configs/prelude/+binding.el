@@ -38,7 +38,7 @@
 (add-hook 'cider-test-report-mode-hook
   '(lambda ()
        (general-def 'normal 'override
-         "<escape>" 'cider-popup-buffer-quit-function)))
+         "q" 'cider-popup-buffer-quit-function)))
 
 (add-hook 'cider-popup-buffer-mode-hook
   '(lambda ()
