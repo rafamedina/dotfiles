@@ -37,7 +37,6 @@
       scroll-preserve-screen-position 1)
 
 ;; mode line settings
-(column-number-mode t)
 (size-indication-mode t)
 
 ;; =====================
@@ -65,8 +64,7 @@
 (setq hl-paren-background-colors '("blue"))
 
 (dolist (mode
-   '(column-number-mode     ; Show column number in mode line
-      delete-selection-mode ; Replace selected text
+   '( delete-selection-mode ; Replace selected text
       show-paren-mode       ; Highlight matching parentheses
       winner-mode))         ; Allow undo/redo on window operations
    (funcall mode 1))
@@ -96,16 +94,11 @@
 
 ;; Defauls
 (setq-default truncate-lines t)
-
-(defun noct:relative ()
-  (setq-local display-line-numbers 'visual))
-
-(defun noct:absolute ()
-  (setq-local display-line-numbers t))
+(global-hl-line-mode t)
+(save-place-mode t)
 
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
-
 
 ;; =====================
 ;; => Hooks
