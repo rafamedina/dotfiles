@@ -16,6 +16,7 @@
                             lispyville
                             dracula-theme
                             company
+                            helm-ag
                             ))
 
 ;; =====================
