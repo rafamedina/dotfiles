@@ -53,7 +53,8 @@
 (progn
   (define-prefix-command 's-key-map)
   (define-key s-key-map (kbd "b") 'helm-ag-buffers)
-  (define-key s-key-map (kbd "f") 'helm-file-do-git-grep))
+  (define-key s-key-map (kbd "f") 'helm-file-do-git-grep)
+  (define-key s-key-map (kbd "/") 'helm-ag-project-root))
 (global-set-key (kbd "<s-return> s") s-key-map)
 
 (progn

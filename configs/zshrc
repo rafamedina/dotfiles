@@ -1,6 +1,4 @@
-ZSH=$HOME/.oh-my-zsh
-# Path to your oh-my-zsh configuration.
-
+export ZSH="/Users/rafael.medina/.oh-my-zsh"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -118,6 +116,10 @@ source $HOME/.nurc
 autoload bashcompinit && bashcompinit
 source "$NU_HOME/nucli/nu.bashcompletion"
 source $NUCLI_HOME/aws-scripts/refresh-environment
+export FLUTTER_PLATFORM_CLIENT_ENV=staging
+export PATH=$GOPATH/bin:$PATH
+export PATH="$NU_HOME/nucli.py/bin:$PATH"
+
 eval "$(rbenv init -)"
 
 alias aws-br='aws --profile=br'
@@ -162,3 +164,4 @@ unset DOCKER_HOST
 
 eval "$(jenv init -)"
 
+alias python=/usr/bin/python3
