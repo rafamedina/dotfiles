@@ -1,4 +1,4 @@
-export ZSH="/Users/rafael.medina/.oh-my-zsh"
+export ZSH="/Users/rafamedina/.oh-my-zsh"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -94,7 +94,7 @@ typeset -U fpath
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:"$HOME/.jenv/bin:$PATH":"$HOME/dev/nu/flutter/bin":$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export EDITOR="/usr/local/bin/vim"
 export PAGER="/usr/local/bin/most"
 export GIT_PAGER="/usr/bin/less"
@@ -111,57 +111,18 @@ export LC_ALL="en_US.UTF-8"
 
 # source "`brew --prefix grc`/etc/grc.bashrc"
 
-# NU
-source $HOME/.nurc
-autoload bashcompinit && bashcompinit
-source "$NU_HOME/nucli/nu.bashcompletion"
-source $NUCLI_HOME/aws-scripts/refresh-environment
-export FLUTTER_PLATFORM_CLIENT_ENV=staging
-export PATH=$GOPATH/bin:$PATH
-export PATH="$NU_HOME/nucli.py/bin:$PATH"
 
-eval "$(rbenv init -)"
-
-alias aws-br='aws --profile=br'
-alias aws-mx='aws --profile=mx'
-alias aws-data='aws --profile=data'
-alias aws-co='aws --profile=co'
+# eval "$(rbenv init -)"
 
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
 
-#GPG Agent
-rgpg(){
-  gpgconf --kill gpg-agent
-    # Restart the gpg agent.
-    killall scdaemon > /dev/null
-    killall gpg-agent > /dev/null
-    killall ssh-agent > /dev/null
-    start_gpgagent
-}
-start_gpgagent() {
-  GPG_TTY=$(tty)
-  export GPG_TTY
-  gpgconf --launch gpg-agent
-  # Launch gpg-agent
-  gpg-connect-agent /bye
-  # When using SSH support, use the current TTY for passphrase prompts
-  gpg-connect-agent updatestartuptty /bye > /dev/null
-  # Point the SSH_AUTH_SOCK to the one handled by gpg-agent
-  if [ -S "$(gpgconf --list-dirs agent-ssh-socket)" ]; then
-    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    export SSH_AUTH_SOCK
-  else
-    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running ?"
-  fi
-}
-start_gpgagent
 
 unset DOCKER_TLS_VERIFY
 unset DOCKER_CERT_PATH
 unset DOCKER_MACHINE_NAME
 unset DOCKER_HOST
 
-eval "$(jenv init -)"
+# eval "$(jenv init -)"
 
 alias python=/usr/bin/python3
