@@ -51,6 +51,9 @@ os=`uname`
     # Never go into computer sleep mode
     sudo systemsetup -setcomputersleep Off > /dev/null
 
+    # opening and closing windows and popovers
+    defaults write -g NSAutomaticWindowAnimationsEnabled -bool true
+
     ###############################################################################
     # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
     ###############################################################################
