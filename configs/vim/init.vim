@@ -27,6 +27,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Olical/conjure', {'tag': 'v3.1.1'}
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ncm2/float-preview.nvim'
 Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
 Plug 'w0rp/ale'
@@ -40,18 +41,12 @@ let g:colorizer_auto_filetype='clojure'
 let g:colorizer_disable_bufleave = 1
 call plug#end()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load Fennel Clojure
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Olical/aniseed', { 'tag': 'v4.1.0' }
-Plug 'bakpakin/fennel.vim'
-
 " => Configure clojure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoread
-set encoding=utf8 
+set encoding=utf-8 
 scriptencoding utf-8
 "-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
@@ -81,6 +76,8 @@ let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\
 else
 let g:neomake_javascript_enabled_makers = ['standard']
 endif
+
+let g:airline_powerline_fonts=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight 

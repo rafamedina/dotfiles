@@ -21,9 +21,9 @@ os=`uname`
     ###############################################################################
 
     # Set computer name (as done via System Preferences → Sharing)
-    sudo scutil --set ComputerName "Gerardo Rochín"
-    sudo scutil --set HostName "gerardo-rochin"
-    sudo scutil --set LocalHostName "gerardo-rochin"
+    sudo scutil --set ComputerName "Rafael Medina"
+    sudo scutil --set HostName "rafael-medina"
+    sudo scutil --set LocalHostName "rafael-medina"
 
     # Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons
     for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
@@ -56,14 +56,15 @@ os=`uname`
     ###############################################################################
 
     # Set a really fast key repeat.
-    defaults write NSGlobalDomain KeyRepeat -int 0
+    defaults write NSGlobalDomain KeyRepeat -int 1
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
     # Use scroll gesture with the Ctrl (^) modifier key to zoom
-    defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+    defaults write com.apple.preference.universalaccess closeViewScrollWheelToggle -bool true
+    defaults write com.apple.preference.universalaccess HIDScrollZoomModifierMask -int 262144
 
     # Follow the keyboard focus while zoomed in
-    defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+    defaults write com.apple.preference.universalaccess closeViewZoomFollowsFocus -bool true
 
     # Set language and text formats
     # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -175,7 +176,7 @@ os=`uname`
     defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
     # Disable local Time Machine backups
-    hash tmutil &> /dev/null && sudo tmutil disablelocal
+    hash tmutil &> /dev/null && sudo tmutil disable
 
     ###############################################################################
     # Activity Monitor                                                            #
