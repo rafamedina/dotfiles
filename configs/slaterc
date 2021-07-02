@@ -20,6 +20,7 @@ bind right:ctrl;cmd  push right bar-resize:screenSizeX/3
 bind left:ctrl;cmd   push left  bar-resize:screenSizeX/3
 bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
 bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2
+bind n:ctrl;alt      push down  center 
 
 # Nudge Bindings
 bind right:shift;alt nudge +10% +0
@@ -27,10 +28,26 @@ bind left:shift;alt  nudge -10% +0
 bind up:shift;alt    nudge +0   -10%
 bind down:shift;alt  nudge +0   +10%
 
+# Move Bindings
+bind 1:ctrl;alt move 0;0                           screenSizeX/3;screenSizeY/2
+bind 2:ctrl;alt move screenSizeX/3;0               screenSizeX/3;screenSizeY/2
+bind 3:ctrl;alt move screenSizeX/3*2;0             screenSizeX/3;screenSizeY/2
+bind 4:ctrl;alt move 0;screenSizeY/2               screenSizeX/3;screenSizeY/2
+bind 5:ctrl;alt move screenSizeX/3;screenSizeY/2   screenSizeX/3;screenSizeY/2
+bind 6:ctrl;alt move screenSizeX/3*2;screenSizeY/2 screenSizeX/3;screenSizeY/2
+bind c:ctrl;alt move screenSizeX/4;screenSizeY/4   screenSizeX/2;screenSizeY/2
+
+bind s:ctrl;alt move 0;0                           screenSizeX/3;screenSizeY
+bind d:ctrl;alt move screenSizeX/3;0               screenSizeX/3;screenSizeY
+bind f:ctrl;alt move screenSizeX/3*2;0             screenSizeX/3;screenSizeY
+
+bind e:ctrl;alt move 0;0               screenSizeX/3*2;screenSizeY
+bind r:ctrl;alt move screenSizeX/3;0   screenSizeX/3*2;screenSizeY
+
 # Throw Bindings
-bind 1:ctrl;alt         throw 0 resize
-bind 2:ctrl;alt         throw 1 resize
-bind 3:ctrl;alt         throw 2 resize
+# bind 2:ctrl;alt         throw 0 resize
+# bind 3:ctrl;alt         throw 1 resize
+# bind 4:ctrl;alt         throw 2 resize
 bind right:ctrl;alt;cmd throw right resize
 bind left:ctrl;alt;cmd  throw left  resize
 bind up:ctrl;alt;cmd    throw up    resize
@@ -44,5 +61,15 @@ bind down:cmd     focus down
 bind up:cmd;alt   focus behind
 bind down:cmd;alt focus behind
 
+# Corner Bindings
+bind u:ctrl;alt corner top-left     resize:screenSizeX/2;screenSizeY/2
+bind i:ctrl;alt corner top-right    resize:screenSizeX/2;screenSizeY/2
+bind j:ctrl;alt corner bottom-left  resize:screenSizeX/2;screenSizeY/2
+bind k:ctrl;alt corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
 # Window Hints
 bind esc:cmd hint
+
+# Sequence Bindings
+# Maximaze
+bind return:ctrl;alt sequence corner top-left | resize +100% +100%
