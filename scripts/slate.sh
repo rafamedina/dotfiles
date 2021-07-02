@@ -3,16 +3,23 @@
 # Slate 
 #
 #
+
 set -e
 
-echo "Slate"
+echo -e "Slate"
 
-# downloading 
-echo "Downloading"
-cd /Applications && curl http://www.ninjamonkeysoftware.com/slate/versions/slate-latest.tar.gz | tar -xz
+os=`uname`
+    if [[ $os == "Darwin" ]]; then
 
-echo "Creating links"
-# slate file
-ln -sfn ~/.dotfiles/configs/slaterc ~/.slate
+    # downloading 
+    echo "Downloading"
+    cd /Applications && curl http://www.ninjamonkeysoftware.com/slate/versions/slate-latest.tar.gz | tar -xz
 
-echo "Done"
+    echo "Creating links"
+    # slate file
+    ln -sfn ~/.dotfiles/configs/slaterc ~/.slate
+
+    echo "Done"
+else
+    echo -e "OS not Supported\n"
+fi
