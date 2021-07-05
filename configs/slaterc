@@ -36,7 +36,7 @@ bind 4:ctrl;alt move 0;screenSizeY/2               screenSizeX/3;screenSizeY/2
 bind 5:ctrl;alt move screenSizeX/3;screenSizeY/2   screenSizeX/3;screenSizeY/2
 bind 6:ctrl;alt move screenSizeX/3*2;screenSizeY/2 screenSizeX/3;screenSizeY/2
 bind c:ctrl;alt move screenSizeX/4-100;screenSizeY/4-100   screenSizeX/2+200;screenSizeY/2+200
-bind m:ctrl;alt move screenSizeX/4-100;screenSizeY/2       screenSizeX/2+200;screenSizeY/2+200
+bind m:ctrl;alt move screenSizeX/4-100;screenSizeY/2       screenSizeX/2+200;screenSizeY/2
 
 # 3x1
 bind a:ctrl;alt move 0;0                           screenSizeX/3;screenSizeY
