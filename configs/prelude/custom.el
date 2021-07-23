@@ -17,6 +17,7 @@
                             dracula-theme
                             company
                             helm-ag
+                            yasnippet
                             ))
 
 ;; =====================
@@ -127,6 +128,28 @@
   (add-hook hook 'lispyville-mode))
 
 
+;; ============================================
+;; => Golang 
+;; ============================================
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+
+(defun my-golang-mode-hook ()
+  (setq gofmt-show-errors nil))
+
+(add-hook 'go-mode-hook #'my-golang-mode-hook)
+
+;; Go - lsp-mode
+;; Set up before-save hooks to format buffer and add/delete imports.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+;; Start LSP Mode and YASnippet mode
+(add-hook 'go-mode-hook #'lsp-deferred)
+(add-hook 'go-mode-hook #'yas-minor-mode)
+
 ;; example of customizing colors
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -141,4 +164,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(scala-mode keycast markdown-preview-mode yaml-mode geiser lsp-ui company-lsp json-mode js2-mode rainbow-mode elisp-slime-nav evil-numbers evil-visualstar evil-surround evil cider clojure-mode rainbow-delimiters key-chord company helm-ag helm-descbinds helm-projectile helm exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window)))
+   '(go-mode lua-mode dracula-theme lispyville general highlight-parentheses moody minions iedit flycheck-clj-kondo clj-refactor winum underwater-theme lsp-dart yaml-mode geiser lsp-ui lsp-mode json-mode js2-mode rainbow-mode elisp-slime-nav evil-numbers evil-visualstar evil-surround evil cider clojure-mode rainbow-delimiters key-chord company helm-ag helm-descbinds helm-projectile helm exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window)))

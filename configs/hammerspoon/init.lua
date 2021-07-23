@@ -118,6 +118,7 @@ hotkeys:bind({ "ctrl", "alt"}, "return", function()
 		windowSize["zoom"] = false
 	end
 end)
+
 hotkeys:bind({ "cmd" }, "escape", function()
 	-- hs.hints.windowHints()
 	hs.hints.windowHints(hs.window.visibleWindows())
